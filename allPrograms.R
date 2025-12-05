@@ -264,7 +264,7 @@ df_data[UnitPrice <= 0, UnitPrice := NA]
 df_data <- na.omit(df_data)
 
 setkeyv(df_data, c('StockCode', 'Description'))
-itemCode <- unique(df_data[, .(StockCode, Description)])
+itemCode <- unique(df_data[, c(StockCode, Description)])
 setkeyv(df_data, NULL)
 
 df_train_ori <- dcast(df_data, CustomerID ~ StockCode, 
@@ -307,3 +307,4 @@ user_1 <- CustomerID[as.integer(names(recc_predicted@items[1]))]
 vvv <- recc_predicted@items[[1]]
 vvv <- rownames(model_details$sim)[vvv]
 itemCode[vvv]
+
