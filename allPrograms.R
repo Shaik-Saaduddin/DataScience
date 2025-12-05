@@ -267,8 +267,7 @@ setkeyv(df_data, c('StockCode', 'Description'))
 itemCode <- unique(df_data[, c(StockCode, Description)])
 setkeyv(df_data, NULL)
 
-df_train_ori <- dcast(df_data, CustomerID ~ StockCode, 
-                      value.var = 'Quantity', fun.aggregate = sum, fill = 0)
+df_train_ori <- dcast(df_data, CustomerID ~ StockCode, value.var = 'Quantity', fun.aggregate = sum, fill = 0)
 
 CustomerID <- df_train_ori[, 1]
 if (ncol(df_train_ori) > 3508) {
@@ -307,4 +306,5 @@ user_1 <- CustomerID[as.integer(names(recc_predicted@items[1]))]
 vvv <- recc_predicted@items[[1]]
 vvv <- rownames(model_details$sim)[vvv]
 itemCode[vvv]
+
 
